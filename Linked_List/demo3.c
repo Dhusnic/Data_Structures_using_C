@@ -15,10 +15,10 @@ void create()
 {
     newnode=(struct node *)malloc(sizeof(struct node));
     int data;
-    printf(" Enter the data you want to store   :    ");
+    printf(" Enter the data you want to store ");
     scanf("%d",&data);
     newnode->data=data;
-    newnode->next=NULL;
+    //newnode->next=0;
     if(head==NULL)
     {
         temp=newnode;
@@ -56,9 +56,9 @@ int main()
     int choice=1;
     while (choice)
     {
-        create();
         printf("enter 1 to continue and 0 to exit : ");
         scanf("%d",&choice);
+        create();
         //printf("1");
     }
     display();
