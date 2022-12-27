@@ -34,39 +34,48 @@ void create()
     // newnode->next=NULL;
 
 }
-void del_at_begining()
+void at_begining()
 {
     int data;
     newnode=(struct node *)malloc(sizeof(struct node));
+    printf("Enter The data you want to insert at the begining   :   ");
+    scanf("%d",&data);
+    newnode->data=data;
+    newnode->next=NULL;
     if (head==NULL)
     {
-        printf("The List is empty");
+        head=newnode;
+        temp=newnode;
     }
     else
     {
-        head=head->next;
-         
+        head->prev=newnode;
+        newnode->next=head;
+        head=newnode;
+        newnode->prev=NULL;
     }
     
 }
 
-void del_at_position()
+void at_position()
 {
-    struct node *temp_prev=NULL,*temp_next=NULL;
+    struct node *temp_prev;
     int data,pos,count=0;
     newnode=(struct node *)malloc(sizeof(struct node));
-    printf("enter the position you want to delete    :   ");
+    printf("Enter the data you want to insert   :   ");
+    scanf("%d",&data);
+    printf("enter the position you want to enter    :   ");
     scanf("%d",&pos);
     newnode->data=data;
     temp=head;
     newnode->next=NULL;
     if (head == NULL)
     {
-        printf("The list is empty");
+        head=newnode;
     }
     else
     {
-         while (count<pos&&temp!=NULL)
+         while (count<pos-2&&temp!=NULL)
         {
             temp_prev=temp;
             temp = temp->next;
@@ -74,8 +83,9 @@ void del_at_position()
         }
         if (temp!=NULL)
         {
-            temp_prev->next=temp->next;
-        
+            newnode->prev=temp_prev;
+            newnode->next=temp->next;
+            temp->next=newnode;
         }
         
 
@@ -84,23 +94,29 @@ void del_at_position()
     
 }
 
-void del_at_end()
+void at_end()
 {
-    struct node *temp_prev;
+    int data;
     newnode=(struct node *)malloc(sizeof(struct node));
+    printf("Enter The data you want to insert at the END    :   ");
+    scanf("%d",&data);
+    newnode->data=data;
+    newnode->next=NULL;
     if (head==NULL)
     {
-        printf("The list is Empty");
+        head=newnode;
+        temp=newnode;
     }
     else
     {
         temp=head;
         while (temp->next!=NULL)
         {
-            temp_prev=temp;
             temp=temp->next;
         }
-        temp_prev->next=NULL;
+        newnode->prev=temp;
+        temp->next=newnode;
+        newnode->next=NULL;
     }
 
 }
@@ -128,11 +144,10 @@ int main()
 
     }
     display();
-    del_at_begining();
+    at_begining();
     display();
-    del_at_end();
+    at_end();
     display();
-    del_at_position();
+    at_position();
     display();
-     
 }

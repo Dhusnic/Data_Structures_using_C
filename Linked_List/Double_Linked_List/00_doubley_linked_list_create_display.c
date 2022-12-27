@@ -1,79 +1,60 @@
- #include<stdio.h>
- #include<stdlib.h>
-
-struct node 
+#include<stdio.h>
+#include<stdlib.h>
+struct node
 {
+    struct node *prev;
     int data;
     struct node *next;
-    struct node *prev;
 };
+struct node *temp,*head=NULL,*newnode;
+void create()
+{
+    newnode = (struct node *)malloc(sizeof(struct node));
+    int data;
+    printf("Enter the data you need to enter : ");
+    scanf("%d",&data);
+    newnode->data=data;
+    newnode->next=NULL; 
+    if ( head==NULL)
+    {
+        head=newnode;
+        temp=newnode;
+        //temp->prev=NULL;
+        //temp->next=newnode;
+    }
+    else
+    {
+        temp->next=newnode;
+        newnode->prev=temp;
+        temp=newnode;
+    }
+    
+    // newnode->prev=NULL;
+    // newnode->data=data;
+    // newnode->next=NULL;
 
-struct node *head, *temp = NULL;
-
-void create(int data)
-{    
-    struct node *new_node = (struct node*)malloc(sizeof(struct node));  
-    new_node->data = data;  
-      
-     
-    if(head == NULL) 
-    {  
-           
-        head = tail = new_node;  
-           
-        head->previous = NULL;  
-         
-        tail->next = NULL;  
-    }  
-    else 
-    {  
-         
-        tail->next = new_node;  
-           
-        newNode->previous = temp;  
-           
-        temp = new_node;  
-          
-        tail->next = NULL;  
-    }  
 }
 
-void display() 
-{  
-    struct node *current = head;
-
-    if(head == NULL) 
-    {  
-        printf("List is empty\n");  
-        return;  
-    }  
-
-    printf("Nodes of doubly linked list: \n"); 
-
-    while(current != NULL) 
-    {  
-           
-        printf("%d ", current->data);  
-        current = current->next;  
-    }  
+void display()
+{
+    temp = head;
+    while (temp!=NULL)
+    {
+        printf("%d , ",temp->data);
+        temp = temp->next; //this statement is using to transversing the linked list
+    }
+    printf("\n");
 }
-
-
 int main()
 {
-   int c=1,d;
-    do
+    int choice=1;
+    while(choice)
     {
-        printf("press 1 to continue and 0 to finish : ");
-        scanf("%d",&c);
-        if(c==1)
-        {
-            printf("enter the data you want : ");
-            scanf("%d",&d);
-            create(d);
-        }
-         
-    }while (c==1);
-    
+        create();
+        printf("enter 1 to continue to create or 0 to finish :  ");
+        scanf("%d",&choice);
+        
+
+    }
     display();
 }

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 void at_beginning();
 void at_end();
-void at_position(int);
+void at_position();
 void display();
 
 struct node
@@ -62,31 +62,25 @@ void at_end()
     temp->next = newnode;
 }
 
-void at_position(int count)
+void at_position()
 {
-    int key, i = 1;
-    temp = head;
+     
+   int data,pos;
+    printf("\nenter the data you need to insert at the position = ");
+    scanf("%d",&data);
+    printf("enter the position you need to insert = ");
+    scanf("%d",&pos);
     newnode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the data for insertion : \n");
-    scanf("%d", &newnode->data);
-    newnode->next = 0;
-
-    printf("Enter where you want to insert the data: \n");
-    scanf("%d", &key);
-    while(temp!=NULL&&temp->data!=key)
+    newnode->data=data;
+    newnode->next=NULL;
+    temp=head;
+    while(--pos)
     {
         temp=temp->next;
     }
-    if(temp!=NULL)
-    {
-        newnode->next=temp->next;
-        temp->next=newnode;
-    }
-    else
-    {
-        printf("\n Notfound");
-    }
-   
+    newnode->next=temp->next;
+    temp->next=newnode;
+
 }
 
 void display()
@@ -132,7 +126,7 @@ int main()
         display();
         break;
     case 3:
-        at_position(count);
+        at_position();
         display();
         break;
     case 4:
