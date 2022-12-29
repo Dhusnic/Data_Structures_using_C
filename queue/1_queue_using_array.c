@@ -1,36 +1,38 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int stack[500],i=0,size=0,last=0;
+int queue[500],i=0,size=0,size2,last=0,j=0;
 
-void push()
+void ENQUEUE()
 {
     int data=0;
     printf("\nENTER THE DATA YOU NEED TO ENTER : ");
     scanf("%d",&data);
-    stack[size]=data;
+    queue[size]=data;
+    i++;
     printf("\n----------------------------------------------------------------------------------\n");
-    printf("\n%d IS PUSHED IN SIDE THE STACK\n",data);
+    printf("\n%d IS ENQUEUEED IN SIDE THE queue\n",data);
     printf("\n----------------------------------------------------------------------------------\n");
     size++;
+    size2++;
 }
 
-void pop()
+void DEQUEUE()
 {
     printf("\n-----------------------------------------------------------------\n");
-    printf("%d IS POPED OUT FROM A STACK",stack[size-1]);
+    printf("%d IS DEQUEUEED OUT FROM A queue",queue[j]);
     printf("\n-----------------------------------------------------------------\n");
-    size--;
+    j++;
+    size2--;
 }
 
 void display()
 {
     printf("\n----------------------------------------------------------------------------------\n");
-    printf("\nTHE ELEMENTS PRENSENT IN STACK ARE : ");
-    for (i = size-1; i>=0;i--)
+    printf("\nTHE ELEMENTS PRENSENT IN queue ARE : ");
+    for (i = size-1; i>=j;i--)
     {
-        printf("\n\t%d\t\n",stack[i]);
-        printf("--------------------\n");
+        printf("\t%d\t|",queue[i]);
     }
     printf("\n----------------------------------------------------------------------------------\n");
     
@@ -41,23 +43,23 @@ int main()
     int choice=1,b;
     while(choice==1)
     {
-        printf("\nENTER\n1.TO PUSH\n2.POP\n3.display\n4.SIZE OF THE STACK\n5.TO EXIT\nENTER THE OPTION : ");
+        printf("\nENTER\n1.TO ENQUEUE\n2.DEQUEUE\n3.display\n4.SIZE OF THE queue\n5.TO EXIT\nENTER THE OPTION : ");
         scanf("%d",&b);
         switch (b)
         {
         case 1:
-            push();
+            ENQUEUE();
             break;
         case 2:
-            pop();
+            DEQUEUE();
             break;
         case 3:
             display();
             break;
         case 4:
-            printf("\n\t-----------------------------------------------------------------\t\n");
-            printf("\nthe size of the stack = %d\n",size);
-            printf("\n\t-----------------------------------------------------------------\t\n");
+            printf("\n-----------------------------------------------------------------\n");
+            printf("\nthe size of the queue = %d\n",size2);
+            printf("\n-----------------------------------------------------------------\n");
             break;
         case 5:
             printf("\n-----------------------------------------------------------------\n");

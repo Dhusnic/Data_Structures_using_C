@@ -1,18 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct stack
+struct queue
 {
     int data;
-    struct stack *next;
+    struct queue *next;
 };
-struct stack *newele,*head,*temp,*prev_temp;
+struct queue *newele,*head,*temp,*prev_temp;
 int size=0;
-void push()
+void enqueue()
 {
     int data;
-    newele = (struct stack *)malloc(sizeof(struct stack));
-    printf("ENTER THE DATA TO PUSH INTO STACK = ");
+    newele = (struct queue *)malloc(sizeof(struct queue));
+    printf("ENTER THE DATA TO ENQUEUE INTO QUEUE = ");
     scanf("%d",&data);
     newele->data=data;
     newele->next=NULL;
@@ -21,7 +21,7 @@ void push()
         head=newele;
         temp=newele;
         printf("\n-----------------------------------------------------------------\n");
-        printf("%d is pushed into the stack",data);
+        printf("%d is ENQUEUE into the QUEUE",data);
         printf("\n-----------------------------------------------------------------\n");
     }
     if (head != NULL)
@@ -29,33 +29,31 @@ void push()
         temp->next=newele;
         temp=newele;
         printf("\n-----------------------------------------------------------------\n");
-        printf("%d is pushed into the stack",data);
+        printf("%d is ENQUEUE into the QUEUE",data);
         printf("\n-----------------------------------------------------------------\n");
     }
     size++;
 
 }
 
-void pop()
+void dequeue()
 {
     temp = head;
     if (size<=0)
     {
         printf("\n-----------------------------------------------------------------\n");
-        printf("\nthe stack is empty or UNDERFLOW\n");
+        printf("\nthe QUEUE is empty or UNDERFLOW\n");
          printf("\n-----------------------------------------------------------------\n");
     }
     else
     {
-        while(temp->next!=NULL)
-        {
-            prev_temp=temp;
-            temp=temp->next;
-        }
+        temp=head;
         printf("\n-----------------------------------------------------------------\n");
-        printf("%d is poped",temp->data);
+        printf("%d is DEQUED",temp->data);
         printf("\n-----------------------------------------------------------------\n");
-        prev_temp->next=NULL;
+        temp=temp->next;
+        free(head);
+        head=temp;
         size--;
     }
     
@@ -72,11 +70,10 @@ void display()
      i++;
 
     }
-    printf("\nTHE ELEMENTS PRESENTS IN STACK ARE : ");
+    printf("\nTHE ELEMENTS PRESENTS IN QUEUE ARE : ");
     for(i=size-1;i>=0;i--)
     {
-        printf("\n\t%d\t\n",ele[i]);
-        printf("--------------------\n");
+        printf("\t%d\t|",ele[i]);
     }
     
     printf("\n");
@@ -88,22 +85,22 @@ int main()
     int choice=1,b;
     while(choice==1)
     {
-        printf("\nENTER\n1.TO PUSH\n2.POP\n3.display\n4.SIZE OF THE STACK\n5.TO EXIT\nENTER THE OPTION : ");
+        printf("\nENTER\n1.TO ENQUEUE\n2.TO DEQUEUE\n3.TO DISPLAY QUEUE\n4.SIZE OF THE QUEUE\n5.TO EXIT\nENTER THE OPTION : ");
         scanf("%d",&b);
         switch (b)
         {
         case 1:
-            push();
+            enqueue();
             break;
         case 2:
-            pop();
+            dequeue();
             break;
         case 3:
             display();
             break;
         case 4:
             printf("\n-----------------------------------------------------------------\n");
-            printf("\nthe size of the stack = %d\n",size);
+            printf("\nthe number of elements in queue = %d\n",size);
             printf("\n-----------------------------------------------------------------\n");
             break;
         case 5:
