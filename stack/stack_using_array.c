@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int stack[500],i=0,size=0,last=0;
+
+void push()
+{
+    int data=0;
+    printf("\nENTER THE DATA YOU NEED TO ENTER : ");
+    scanf("%d",&data);
+    stack[i]=data;
+    i++;
+    printf("\n----------------------------------------------------------------------------------\n");
+    printf("\n%d IS PUSHED IN SIDE THE STACK\n",data);
+    printf("\n----------------------------------------------------------------------------------\n");
+    size++;
+}
+
+void pop()
+{
+    printf("\n-----------------------------------------------------------------\n");
+    printf("%d IS POPED OUT FROM A STACK",stack[size-1]);
+    printf("\n-----------------------------------------------------------------\n");
+    size--;
+}
+
+void display()
+{
+    printf("\n----------------------------------------------------------------------------------\n");
+    printf("\nTHE ELEMENTS PRENSENT IN STACK ARE : ");
+    for (i = size-1; i>=0;i--)
+    {
+        printf("\t%d\t",stack[i]);
+    }
+    printf("\n----------------------------------------------------------------------------------\n");
+    
+}
+
+int main()
+{
+    int choice=1,b;
+    while(choice==1)
+    {
+        printf("\nENTER\n1.TO PUSH\n2.POP\n3.display\n4.SIZE OF THE STACK\n5.TO EXIT\nENTER THE OPTION : ");
+        scanf("%d",&b);
+        switch (b)
+        {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            printf("\n-----------------------------------------------------------------\n");
+            printf("\nthe size of the stack = %d\n",size);
+            printf("\n-----------------------------------------------------------------\n");
+            break;
+        case 5:
+            printf("\n-----------------------------------------------------------------\n");
+            printf("\nTHE PROGRAM HAS BEEN END (THANK YOU)\n");
+            printf("\n-----------------------------------------------------------------\n");
+            choice=0;
+            break;
+        }
+    }
+}
